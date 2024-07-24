@@ -1,30 +1,52 @@
-@page "/"
+from flask import Flask, render_template_string
 
-<h3>Confession to Yan Qiqiao</h3>
+app = Flask(__name__)
 
-<div class="container">
-    <h1>Dear Yan Qiqiao,</h1>
-    <p>I have always admired your charm and intelligence from afar. Your smile lights up my day, and your presence fills my heart with joy. This is my sincere confession: I am deeply in love with you.</p>
-    <p>With love,<br>Your Admirer</p>
-</div>
-
-<style>
-    .container {
+# HTML template with the confession
+html_template = """
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Confession to Yan Qiqiao</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f8f9fa;
+        margin-top: 50px;
+      }
+      .container {
         background-color: #ffffff;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         max-width: 600px;
         margin: auto;
-        text-align: center;
-        margin-top: 50px;
-        font-family: Arial, sans-serif;
-    }
-    h1 {
+      }
+      h1 {
         color: #343a40;
-    }
-    p {
+      }
+      p {
         color: #6c757d;
         font-size: 1.2em;
-    }
-</style>
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dear Yan Qiqiao,</h1>
+      <p>I have always admired your charm and intelligence from afar. Your smile lights up my day, and your presence fills my heart with joy. This is my sincere confession: I am deeply in love with you.</p>
+      <p>With love,<br>Your Admirer</p>
+    </div>
+  </body>
+</html>
+"""
+
+@app.route('/')
+def home():
+    return render_template_string(html_template)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
